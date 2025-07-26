@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Мой сайт{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .menu-item {
+            position: relative;
+        }
+        .menu-item a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+        }
+        .menu-item a:hover {
+            background: #e9ecef;
+        }
+        .menu-item a.active {
+            color: #fff;
+            background: #007bff;
+        }
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .menu-item:hover > .submenu,
+        .menu-item.parent-active > .submenu {
+            display: block;
+        }
+        .content {
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    {% load menu_tags %}
+    {% draw_menu 'main_menu' %}
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
